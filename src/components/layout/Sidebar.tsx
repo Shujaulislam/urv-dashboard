@@ -1,23 +1,43 @@
+'use client'
+
 import { HomeIcon, IdCard, MessageSquareText, Users } from 'lucide-react'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
-  useState(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setIsOpen(false)
-      } else {
-        setIsOpen(true)
-      }
+  // useState(() => {
+  //   const handleResize = () => {
+  //     if (window.innerWidth <= 768) {
+  //       setIsOpen(false)
+  //     } else {
+  //       setIsOpen(true)
+  //     }
+  //   }
+  //   window.addEventListener('resize', handleResize)
+  //   handleResize()
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize)
+  //   }
+  // })
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const handleResize = () => {
+        if (window.innerWidth <= 768) {
+          setIsOpen(false);
+        } else {
+          setIsOpen(true);
+        }
+      };
+
+      window.addEventListener('resize', handleResize);
+      handleResize();
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
     }
-    window.addEventListener('resize', handleResize)
-    handleResize()
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  })
+  }, []);
   return (
     <aside
       className={`h-full w-64 fixed top-0 left-0 text-white bg-gray-800 transition-transform duration-300 ${

@@ -1,7 +1,8 @@
 'use client'
 
 import { useTheme } from '@/context/ThemeContext';
-import { Bell, Moon, Sun, User } from 'lucide-react'
+import { Bell, Moon, Sun, User } from 'lucide-react';
+
 import React from 'react'
 
 
@@ -9,7 +10,7 @@ function Navbar() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <header className="fixed top-0 flex justify-between items-center gap-4 p-4 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 w-[calc(100%-16rem)]">
+    <header className="fixed top-0 right-0 flex justify-between items-center gap-4 p-4 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 w-[calc(100%-16rem)]">
       <div className='ml-auto flex items-center gap-4'>
         <button
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
