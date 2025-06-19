@@ -9,7 +9,7 @@ export default function Navbar() {
   return (
     <header
       className="fixed top-0 right-0 left-0 md:left-64 z-30 flex justify-end items-center gap-4 p-4 
-      bg-white/80 dark:bg-gray-900/80 backdrop-blur border-b border-gray-200 dark:border-gray-700"
+      bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-lg transform transition-transform duration-300 backdrop-blur border-b border-gray-200 dark:border-gray-700"
     >
       <div className="ml-auto flex items-center gap-4">
         <button
