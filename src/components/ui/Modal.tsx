@@ -10,10 +10,10 @@ type ModalProps = {
   children: React.ReactNode;
 };
 
-const modalRef = useRef<HTMLDivElement>(null); //using it below to place user directly inside the modal
 
 
 export default function Modal({ isOpen, onClose, title, children }: ModalProps) {
+  const modalRef = useRef<HTMLDivElement>(null); //using it below to place user directly inside the modal
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
