@@ -10,14 +10,29 @@ The project follows a modular structure with the following organization:
 src/
 ├── app/                    # Next.js app router pages
 │   ├── dashboard/          # Dashboard route
-│   ├── members/            # Members management route
-│   └── settings/           # Settings route
-├── components/             # React components
-│   ├── dashboard/          # Dashboard-specific components
-│   ├── layout/            # Layout components (Navbar, Sidebar)
-│   ├── settings/          # Settings-specific components
+│   ├── members/           # Members management route
+│   ├── message/           # Message management route
+│   ├── roles/             # Roles management route
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout component
+│   └── page.tsx           # Home page component
+├── components/             
+│   ├── charts/            # Chart components
+│   │   └── LineChart.tsx
+│   ├── layout/            # Layout components
+│   │   ├── Footer.tsx
+│   │   ├── Navbar.tsx
+│   │   └── Sidebar.tsx
 │   └── ui/                # Reusable UI components
+│       ├── Button.tsx
+│       ├── Card.tsx
+│       ├── MemberForm.tsx
+│       ├── MemberTable.tsx
+│       ├── MessageCard.tsx
+│       ├── Modal.tsx
+│       └── RoleToggle.tsx
 └── context/               # React context providers
+    └── ThemeContext.tsx   # Theme management context
 ```
 
 ## Features Implemented
@@ -33,11 +48,6 @@ src/
 - Role-based filtering
 - Pagination
 - Sortable columns
-
-### Settings
-- Theme toggle (light/dark)
-- Notification preferences
-- Responsive form layout
 
 ### Common Features
 - Loading states for all pages // optional will add
