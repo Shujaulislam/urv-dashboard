@@ -39,17 +39,17 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 transition-all duration-300 scale-95 animate-in fade-in-0 zoom-in-95"
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 transition-all duration-300 animate-in fade-in-0 zoom-in-95"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
-      tabIndex={-1}    //for screen readers
+      tabIndex={-1} // for screen readers
     >
       <div
         ref={modalRef}
-        className="bg-white dark:bg-gray-800 rounded-lg w-full max-w-md p-6 relative transition-all duration-300 scale-95 animate-in fade-in-0 zoom-in-95"
-        onClick={e => e.stopPropagation()}
+        className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg w-full max-w-md p-6 relative shadow-lg transition-transform transform animate-in fade-in-0 zoom-in-95"
+        onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
@@ -58,8 +58,10 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
         >
           <X className="w-5 h-5" />
         </button>
-        
-        <h2 id="modal-title" className="text-xl font-semibold mb-4">{title}</h2>
+
+        <h2 id="modal-title" className="text-xl font-semibold mb-4">
+          {title}
+        </h2>
         {children}
       </div>
     </div>

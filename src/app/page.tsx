@@ -14,8 +14,8 @@ export default function Home() {
         </p>
         <Link
           href="/dashboard"
-          className="inline-block rounded-lg px-6 py-3 bg-primary text-primary-foreground font-semibold 
-          shadow hover:bg-primary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 
+          className="inline-block rounded-lg px-6 py-3 bg-primary dark:bg-primary-foreground text-primary-foreground dark:text-primary-foreground 
+          font-semibold shadow-lg hover:bg-primary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 
           focus-visible:ring-primary transition-colors text-lg"
           aria-label="Go to Dashboard"
         >

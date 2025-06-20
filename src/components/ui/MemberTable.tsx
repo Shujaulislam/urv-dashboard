@@ -45,86 +45,96 @@ export default function MemberTable() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedMembers = filteredMembers.slice(startIndex, startIndex + itemsPerPage);
 
-  return (
-    <div className="space-y-4">
-      <div className="flex flex-col sm:flex-row gap-4 justify-between">
-        <input
-          type="text"
-          placeholder="Search members..."
-          className="p-2 border rounded dark:bg-gray-700 dark:border-gray-600"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <select
-          value={selectedRole}
-          onChange={(e) => setSelectedRole(e.target.value)}
-          className="p-2 border rounded dark:bg-gray-700 dark:border-gray-600"
-        >
-          {roles.map(role => (
-            <option key={role} value={role}>{role}</option>
-          ))}
-        </select>
-      </div>
+return (
+  <div className="space-y-6">
+    {/* Filters */}
+    <div className="flex flex-col sm:flex-row gap-4 justify-between">
+      <input
+        type="text"
+        placeholder="Search members..."
+        className="p-2 border rounded w-full sm:w-1/2 text-black dark:text-white dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <select
+        value={selectedRole}
+        onChange={(e) => setSelectedRole(e.target.value)}
+        className="p-2 border rounded w-full sm:w-1/3 text-black dark:text-white dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        {roles.map(role => (
+          <option key={role} value={role}>{role}</option>
+        ))}
+      </select>
+    </div>
 
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-          <thead className="bg-gray-50 dark:bg-gray-800">
+    {/* Table */}
+    <div className="overflow-x-auto rounded-lg shadow">
+      <table className="min-w-full text-sm divide-y divide-gray-200 dark:divide-gray-700">
+        <thead className="bg-gray-50 dark:bg-gray-800">
+          <tr>
+            <th className="p-4 text-left font-medium text-gray-700 dark:text-gray-300">Avatar</th>
+            <th
+              className={`p-4 cursor-pointer text-left font-medium ${sortBy === 'username' ? 'text-blue-500' : 'text-gray-700 dark:text-gray-300'}`}
+              onClick={() => setSortBy('username')}
+            >
+              Username {sortBy === 'username' && '✓'}
+            </th>
+            <th
+              className={`p-4 cursor-pointer text-left font-medium ${sortBy === 'joinDate' ? 'text-blue-500' : 'text-gray-700 dark:text-gray-300'}`}
+              onClick={() => setSortBy('joinDate')}
+            >
+              Join Date {sortBy === 'joinDate' && '↓'}
+            </th>
+            <th className="p-4 text-left font-medium text-gray-700 dark:text-gray-300">Role</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+          {paginatedMembers.length === 0 ? (
             <tr>
-              <th className="p-4" scope="col">Avatar</th>
-              <th 
-                className= {`p-4 cursor-pointer ${sortBy === 'username' ? 'text-blue-500 font-semibold' : ''}`}
-                onClick={() => setSortBy('username')}
-              >
-                Username {sortBy === 'username' ? '✓' : ''}
-              </th>
-              <th 
-                className="p-4 cursor-pointer"
-                onClick={() => setSortBy('joinDate')}
-              >
-                Join Date {sortBy === 'joinDate' ? '↓' : ''}
-              </th>
-              <th className="p-4">Role</th>
+              <td colSpan={4} className="p-4 text-center text-gray-500 dark:text-gray-400">
+                No members found
+              </td>
             </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-            {paginatedMembers.length === 0 ? (
-              <tr>
-                <td colSpan={4} className="p-4 text-center text-gray-500 dark:text-gray-400">No members found</td>
-              </tr>
-            ) : (
-              paginatedMembers.map(member => (
-              <tr key={member.id}>
+          ) : (
+            paginatedMembers.map(member => (
+              <tr key={member.id} className="hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
                 <td className="p-4">
                   <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                    <User className="w-4 h-4" />
+                    <User className="w-4 h-4 text-gray-600 dark:text-gray-300" />
                   </div>
                 </td>
-                <td className="p-4">{member.username}</td>
-                <td className="p-4">{member.joinDate}</td>
-                <td className="p-4">{member.role}</td>
+                <td className="p-4 text-gray-900 dark:text-gray-100">{member.username}</td>
+                <td className="p-4 text-gray-700 dark:text-gray-300">{member.joinDate}</td>
+                <td className="p-4 text-gray-700 dark:text-gray-300">{member.role}</td>
               </tr>
-            )))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="flex justify-between items-center">
-        <button
-          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-          className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded disabled:opacity-50"
-        >
-          Previous
-        </button>
-        <span>Page {currentPage} of {totalPages}</span>
-        <button
-          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-          disabled={currentPage === totalPages}
-          className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded disabled:opacity-50"
-        >
-          Next
-        </button>
-      </div>
+            ))
+          )}
+        </tbody>
+      </table>
     </div>
-  );
+
+    {/* Pagination */}
+    <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+      <button
+        type="button"
+        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+        disabled={currentPage === 1}
+        className="px-4 py-2 text-black dark:text-black bg-gray-300 dark:bg-gray-200 rounded disabled:opacity-50 transition-colors"
+      >
+        Previous
+      </button>
+      <span className="text-sm text-gray-700 dark:text-gray-300">
+        Page {currentPage} of {totalPages}
+      </span>
+      <button
+        type="button"
+        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+        disabled={currentPage === totalPages}
+        className="px-4 py-2 text-black dark:text-black bg-gray-300 dark:bg-gray-200 rounded disabled:opacity-50 transition-colors"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+);
 }

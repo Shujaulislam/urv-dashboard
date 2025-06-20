@@ -44,29 +44,31 @@ export default function RolesPage() {
   };
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Server Roles</h1>
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-          onClick={() => alert('Add role functionality to be implemented')}
-        >
-          Add Role
-        </button>
-      </div>
-
-      <div className="space-y-4">
-        {roles.map(role => (
-          <RoleToggle
-            key={role.id}
-            name={role.name}
-            color={role.color}
-            isEnabled={role.isEnabled}
-            onToggle={() => handleToggle(role.id)}
-            onRename={(newName) => handleRename(role.id, newName)}
-          />
-        ))}
-      </div>
+  <div className="p-4 sm:p-6 bg-white dark:bg-gray-900 min-h-screen">
+    <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+        Server Roles
+      </h1>
+      <button
+        className="w-full sm:w-auto px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        onClick={() => alert('Add role functionality to be implemented')}
+      >
+        Add Role
+      </button>
     </div>
-  );
+
+    <div className="space-y-4">
+      {roles.map(role => (
+        <RoleToggle
+          key={role.id}
+          name={role.name}
+          color={role.color}
+          isEnabled={role.isEnabled}
+          onToggle={() => handleToggle(role.id)}
+          onRename={(newName) => handleRename(role.id, newName)}
+        />
+      ))}
+    </div>
+  </div>
+);
 }

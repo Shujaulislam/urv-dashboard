@@ -1,4 +1,3 @@
-
 import { User, Trash2 } from 'lucide-react';
 
 type MessageCardProps = {
@@ -10,20 +9,25 @@ type MessageCardProps = {
 
 export default function MessageCard({ username, timestamp, content, onDelete }: MessageCardProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm">
-      <div className="flex items-start justify-between gap-4">
+    <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm transition-colors">
+      <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center flex-shrink-0">
+          <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
             <User className="w-6 h-6 text-gray-500 dark:text-gray-400" />
           </div>
           <div>
-            <h3 className="font-medium">{username}</h3>
-            <time className="text-sm text-gray-500 dark:text-gray-400">{timestamp}</time>
+            <h3 className="font-medium text-gray-900 dark:text-white">
+              {username}
+            </h3>
+            <time className="text-sm text-gray-500 dark:text-gray-400">
+              {timestamp}
+            </time>
           </div>
         </div>
         <button
           onClick={onDelete}
-          className="text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-colors"
+          className="text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-colors 
+          self-start"
           aria-label={`Delete message from ${username}`}
         >
           <Trash2 className="w-5 h-5" />
